@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+         http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/cache
+          http://www.springframework.org/schema/cache/spring-cache.xsd
+          http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="by.leonovich.booklib.*"/>
+    <aop:aspectj-autoproxy/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="url" value="jdbc:mysql://localhost:3306/book_library"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="21021991"/>
+        <property name="initialSize" value="20"/>
+        <property name="maxActive" value="30"/>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>by.leonovich.booklib.domain.Book</value>
+            </list>
+        </property>
+
+        <property name="namingStrategy">
+            <bean class="by.leonovich.booklib.util.CustomNamingStrategy"/>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="debug">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="connection.isolation">2</prop>
+                <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!-- TRANSACTION SETTINGS -->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <tx:advice id="txAdice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+            <tx:method name="get" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+
+    <bean id="bookService" class="by.leonovich.booklib.services.BookService">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+
+    <bean id="bookDao" class="by.leonovich.booklib.dao.BookDao">
+        <constructor-arg index="0" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="bookEntity" class="by.leonovich.booklib.domain.Book">
+        <constructor-arg index="0" value="testtitle"/>
+        <constructor-arg index="1" value="testauthor"/>
+        <constructor-arg index="2" value="2015"/>
+    </bean>
+
+    <aop:config>
+        <aop:advisor advice-ref="txAdice" pointcut="execution(* by.leonovich.booklib.services.BookService.*(..))"/>
+        <aop:aspect ref="notifier">
+            <aop:pointcut id="advice" expression="execution(* *.findBook())"/>
+            <aop:before pointcut-ref="advice" method="notifyBefore"/>
+            <aop:after pointcut-ref="advice" method="notifyAfter"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

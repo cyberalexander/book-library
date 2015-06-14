@@ -1,0 +1,9 @@
+Java: A Beginner's Guide, Herbert Schildt, 2014
+Effective Java (2nd Edition),  Joshua Bloch, 2008
+Java: The Complete Reference (Complete Reference Series), Herbert Schildt, 2014
+Head First Java - 2nd Edition, Bert Bates, 2005
+Beginning Programming with Java For Dummies, Burd, 2014
+Java 8 in Action, Raoul-Gabriel Urma, 2014
+Core Java for the Impatient, Cay S. Horstmann, 2015
+Java Concurrency in Practice,  Brian Goetz, 2006
+Core Java Volume I--Fundamentals (9th Edition), Cay S. Horstmann, 2012
