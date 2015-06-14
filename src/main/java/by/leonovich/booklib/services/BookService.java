@@ -76,7 +76,7 @@ public class BookService implements IBookService {
                 System.out.println(element.toString());
             }
         } catch (DaoException e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return list;
     }
@@ -112,9 +112,9 @@ public class BookService implements IBookService {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return list;
     }
