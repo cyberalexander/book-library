@@ -7,6 +7,8 @@ import by.leonovich.booklib.domain.Book;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,9 +22,9 @@ import static by.leonovich.booklib.util.Constants.ConstList.*;
  * Service methods for working with Book-entity
  */
 @Service("bookService")
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class BookService implements IBookService {
     private static final Logger log = Logger.getLogger(BookService.class);
-
 
     @Autowired
     private BookDao bookDao;
@@ -51,6 +53,7 @@ public class BookService implements IBookService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Book findBook() {
         System.out.println("Get by Id. Please enter book id:");
         System.out.print(WRITE_ID);

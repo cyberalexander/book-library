@@ -8,7 +8,6 @@ import java.util.Date;
  * Created by alexanderleonovich on 11.06.15.
  */
 @Entity
-@Table(name = "T_BOOK")
 public class Book implements Serializable{
     private static final long serialVersionUID = 4519960040846861L;
 
@@ -16,11 +15,8 @@ public class Book implements Serializable{
     @Column(name = "F_BOOK_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bookId;
-    @Column(name = "F_TITLE")
     private String title;
-    @Column(name = "F_AUTHOR")
     private String author;
-    @Column(name = "F_YEAR")
     private String year;
 
 

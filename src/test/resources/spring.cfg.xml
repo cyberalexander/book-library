@@ -34,11 +34,7 @@
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="annotatedClasses">
-            <list>
-                <value>by.leonovich.booklib.domain.Book</value>
-            </list>
-        </property>
+        <property name="packagesToScan" value="by.leonovich.booklib.domain"/>
 
         <property name="namingStrategy">
             <bean class="by.leonovich.booklib.util.CustomNamingStrategy"/>
@@ -52,6 +48,7 @@
                 <prop key="connection.isolation">2</prop>
                 <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <!--<prop key="current_session_context_class">thread</prop>-->
             </props>
         </property>
     </bean>
@@ -61,22 +58,20 @@
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <tx:advice id="txAdice" transaction-manager="txManager">
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+    <!--<tx:advice id="txAdice" transaction-manager="txManager">
         <tx:attributes>
             <tx:method name="*" propagation="REQUIRED"/>
             <tx:method name="get" propagation="SUPPORTS" read-only="true"/>
         </tx:attributes>
-    </tx:advice>
+    </tx:advice>-->
 
 
 
-    <bean id="bookService" class="by.leonovich.booklib.services.BookService">
-        <property name="bookDao" ref="bookDao"/>
-    </bean>
+    <bean id="bookService" class="by.leonovich.booklib.services.BookService"/>
 
-    <bean id="bookDao" class="by.leonovich.booklib.dao.BookDao">
-        <constructor-arg index="0" ref="sessionFactory"/>
-    </bean>
+    <bean id="bookDao" class="by.leonovich.booklib.dao.BookDao"/>
 
     <bean id="bookEntity" class="by.leonovich.booklib.domain.Book">
         <constructor-arg index="0" value="testtitle"/>
@@ -85,7 +80,7 @@
     </bean>
 
     <aop:config>
-        <aop:advisor advice-ref="txAdice" pointcut="execution(* by.leonovich.booklib.services.BookService.*(..))"/>
+       <!-- <aop:advisor advice-ref="txAdice" pointcut="execution(* by.leonovich.booklib.services.BookService.*(..))"/>-->
         <aop:aspect ref="notifier">
             <aop:pointcut id="advice" expression="execution(* *.findBook())"/>
             <aop:before pointcut-ref="advice" method="notifyBefore"/>

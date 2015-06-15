@@ -3,8 +3,11 @@ package by.leonovich.booklib.dao;
 import by.leonovich.booklib.domain.Book;
 import by.leonovich.booklib.util.Constants;
 import by.leonovich.booklib.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,6 +21,8 @@ import static org.junit.Assert.*;
 public class BookDaoTest {
 
     private static ClassPathXmlApplicationContext ac;
+    private SessionFactory sessionFactory;
+    private Session session;
     private BookDao bookDao;
     private Book book;
 
@@ -27,11 +32,14 @@ public class BookDaoTest {
         ac = new ClassPathXmlApplicationContext(new String[]{SPRING_SETTINGS});
         bookDao = (BookDao) ac.getBean(BOOK_DAO_BEAN);
         book = (Book) ac.getBean("bookEntity");
+        sessionFactory = (SessionFactory) ac.getBean("sessionFactory");
+        session = sessionFactory.openSession();
     }
 
     @After
     public void tearDown() throws Exception {
         book = null;
+        session.close();
     }
 
     @Test

@@ -1,12 +1,9 @@
 package by.leonovich.booklib.dao;
 
 import by.leonovich.booklib.dao.exception.DaoException;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
@@ -19,60 +16,50 @@ import java.util.List;
  */
 @Repository
 public abstract class Dao<T> implements IDao<T> {
+    @Autowired
     protected SessionFactory sessionFactory;
 
-    public Dao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public Dao() {
     }
 
-    private Session getSession() {
+    private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
 
     @Override
     public void save(T t) throws DaoException {
-        Session session = getSession();
-        session.save(t);
+        getCurrentSession().save(t);
     }
 
     @Override
     public void saveOrUpdate(T t) throws DaoException {
-        Session session = getSession();
-        session.saveOrUpdate(t);
+        getCurrentSession().saveOrUpdate(t);
     }
 
     @Override
     public T get(Serializable id) throws DaoException {
-        Session session = getSession();
-        T t = (T) session.get(getPersistentClass(), id);
-        return t;
+        return (T) getCurrentSession().get(getPersistentClass(), id);
     }
 
     @Override
     public T load(Serializable id) throws DaoException {
-        Session session = getSession();
-        T t = (T) session.load(getPersistentClass(), id);
-        return t;
+        return (T) getCurrentSession().load(getPersistentClass(), id);
     }
 
     @Override
     public void delete(T t) throws DaoException {
-        Session session = getSession();
-        session.delete(t);
+        getCurrentSession().delete(t);
     }
 
     @Override
     public List<T> getAll() throws DaoException {
-        Session session = getSession();
-        List<T> list = parseResultForGetAll(session);
-        return list;
+        return parseResultForGetAll(getCurrentSession());
     }
 
     @Override
     public void update(T t) throws DaoException {
-            Session session = getSession();
-            session.update(t);
+        getCurrentSession().update(t);
     }
 
     protected abstract List<T> parseResultForGetAll(Session session);

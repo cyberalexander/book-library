@@ -16,9 +16,8 @@ import java.util.List;
 @Repository
 public class BookDao extends Dao<Book> {
 
-    @Autowired
-    public BookDao(SessionFactory sessionFactory) {
-        super(sessionFactory);
+    public BookDao() {
+        super();
     }
 
     /**
