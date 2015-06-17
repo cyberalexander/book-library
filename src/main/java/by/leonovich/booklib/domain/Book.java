@@ -4,16 +4,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 /**
  * Created by alexanderleonovich on 11.06.15.
  */
-@Entity
+@Entity(name = "F")
 public class Book implements Serializable{
     private static final long serialVersionUID = 4519960040846861L;
 
     @Id
-    @Column(name = "F_BOOK_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "F_BOOK_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = IDENTITY)
     private Long bookId;
     private String title;
     private String author;
