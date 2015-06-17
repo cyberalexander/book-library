@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -15,6 +17,7 @@ import java.util.List;
  * Abstract dao layer
  */
 @Repository
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public abstract class Dao<T> implements IDao<T> {
     @Autowired
     protected SessionFactory sessionFactory;
@@ -38,6 +41,7 @@ public abstract class Dao<T> implements IDao<T> {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public T get(Serializable id) throws DaoException {
         return (T) getCurrentSession().get(getPersistentClass(), id);
     }
@@ -53,6 +57,7 @@ public abstract class Dao<T> implements IDao<T> {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<T> getAll() throws DaoException {
         return parseResultForGetAll(getCurrentSession());
     }

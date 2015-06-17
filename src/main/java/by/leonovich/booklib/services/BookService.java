@@ -1,7 +1,6 @@
 package by.leonovich.booklib.services;
 
 import by.leonovich.booklib.dao.BookDao;
-import by.leonovich.booklib.dao.Dao;
 import by.leonovich.booklib.dao.exception.DaoException;
 import by.leonovich.booklib.domain.Book;
 import org.apache.log4j.Logger;

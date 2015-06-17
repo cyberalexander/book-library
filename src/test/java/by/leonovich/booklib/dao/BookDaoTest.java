@@ -9,7 +9,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import static by.leonovich.booklib.util.Constants.ConstList.BOOK_DAO_BEAN;
 import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
@@ -18,11 +23,10 @@ import static org.junit.Assert.*;
 /**
  * Created by alexanderleonovich on 12.06.15.
  */
+//@Ignore
 public class BookDaoTest {
 
-    private static ClassPathXmlApplicationContext ac;
-    private SessionFactory sessionFactory;
-    private Session session;
+    private static ApplicationContext ac;
     private BookDao bookDao;
     private Book book;
 
@@ -32,14 +36,12 @@ public class BookDaoTest {
         ac = new ClassPathXmlApplicationContext(new String[]{SPRING_SETTINGS});
         bookDao = (BookDao) ac.getBean(BOOK_DAO_BEAN);
         book = (Book) ac.getBean("bookEntity");
-        sessionFactory = (SessionFactory) ac.getBean("sessionFactory");
-        session = sessionFactory.openSession();
     }
 
     @After
     public void tearDown() throws Exception {
         book = null;
-        session.close();
+        //session.close();
     }
 
     @Test
@@ -49,7 +51,7 @@ public class BookDaoTest {
         assertNotNull("After save() person and address person-personId is null. ", book.getBookId());
     }
 
-    @Test
+    /*@Test
     public void testSaveOrUpdate() throws Exception {
 
     }
@@ -77,5 +79,5 @@ public class BookDaoTest {
     @Test
     public void testUpdate() throws Exception {
 
-    }
+    }*/
 }
