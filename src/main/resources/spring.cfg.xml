@@ -42,7 +42,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="connection.isolation">2</prop>
                 <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
             </props>
         </property>
     </bean>
@@ -58,11 +58,11 @@
 
     <bean id="bookDao" class="by.leonovich.booklib.dao.BookDao"/>-->
 
-    <!--<bean id="bookEntity" class="by.leonovich.booklib.domain.Book">
+    <bean id="bookEntity" class="by.leonovich.booklib.domain.Book">
         <constructor-arg index="0" value="testtitle"/>
         <constructor-arg index="1" value="testauthor"/>
         <constructor-arg index="2" value="2015"/>
-    </bean>-->
+    </bean>
 
     <aop:config>
         <!-- <aop:advisor advice-ref="txAdice" pointcut="execution(* by.leonovich.booklib.services.BookService.*(..))"/>-->

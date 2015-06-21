@@ -20,7 +20,7 @@ import static by.leonovich.booklib.util.Constants.ConstList.*;
  * Created by alexanderleonovich on 12.06.15.
  * Service methods for working with Book-entity
  */
-@Service("bookService")
+@Service
 @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class BookService implements IBookService {
     private static final Logger log = Logger.getLogger(BookService.class);
@@ -30,6 +30,7 @@ public class BookService implements IBookService {
 
     public BookService() {
     }
+
 
     @Override
     public Book createBook(Book book) throws DaoException {

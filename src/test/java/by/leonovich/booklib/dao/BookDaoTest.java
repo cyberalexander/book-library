@@ -1,10 +1,6 @@
 package by.leonovich.booklib.dao;
 
 import by.leonovich.booklib.domain.Book;
-import by.leonovich.booklib.util.Constants;
-import by.leonovich.booklib.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -12,18 +8,19 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static by.leonovich.booklib.util.Constants.ConstList.BOOK_DAO_BEAN;
 import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by alexanderleonovich on 12.06.15.
  */
-//@Ignore
+@Ignore
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class BookDaoTest {
 
     private static ApplicationContext ac;
@@ -41,10 +38,10 @@ public class BookDaoTest {
     @After
     public void tearDown() throws Exception {
         book = null;
-        //session.close();
     }
 
     @Test
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void testSave() throws Exception {
         assertNull("Id before save() is not null.", book.getBookId());
         bookDao.save(book);

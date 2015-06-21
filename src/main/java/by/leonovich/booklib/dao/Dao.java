@@ -17,12 +17,12 @@ import java.util.List;
  * Abstract dao layer
  */
 @Repository
-@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public abstract class Dao<T> implements IDao<T> {
-    @Autowired
     protected SessionFactory sessionFactory;
 
-    public Dao() {
+    @Autowired
+    public Dao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
     private Session getCurrentSession() {
@@ -41,7 +41,6 @@ public abstract class Dao<T> implements IDao<T> {
     }
 
     @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public T get(Serializable id) throws DaoException {
         return (T) getCurrentSession().get(getPersistentClass(), id);
     }

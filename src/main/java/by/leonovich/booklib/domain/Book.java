@@ -9,7 +9,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Created by alexanderleonovich on 11.06.15.
  */
-@Entity(name = "F")
+@Entity
+@Table(name = "T_BOOK")
 public class Book implements Serializable{
     private static final long serialVersionUID = 4519960040846861L;
 
