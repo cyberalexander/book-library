@@ -8,6 +8,7 @@ public class Constants {
     public static class ConstList{
 
         public static final String WRITE_TITLE = "write title of book: ";
+        public static final String WRITE_AUTHOR = "write author of book: ";
         public static final String WRITE_YEAR = "write year of book: ";
         public static final String WRITE_ID = "Write id: ";
         public static final String FILE = "books.txt";

@@ -13,22 +13,24 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
-        <spring.version>4.1.4.RELEASE</spring.version>
-        <slf4j.version>1.7.9</slf4j.version>
-        <mysql.version>5.1.34</mysql.version>
+        <hibernate.version>5.5.7.Final</hibernate.version>
+        <spring.version>5.3.10</spring.version>
+        <spring.security.version>5.5.1</spring.security.version>
+        <mysql.connector.version>8.0.17</mysql.connector.version>
         <log4j.version>1.2.17</log4j.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <aspectj.version>1.8.4</aspectj.version>
         <cglib.version>3.1</cglib.version>
         <dbcp.version>1.4</dbcp.version>
         <tiles.version>2.2.2</tiles.version>
-        <spring.security>3.2.5.RELEASE</spring.security>
         <jstl.version>1.2</jstl.version>
+        <javax.persistence.version>2.2</javax.persistence.version>
+        <javax.annotation.version>1.3.2</javax.annotation.version>
+        <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
     </properties>
 
     <build>
         <plugins>
-
             <!-- Maven dependency plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -82,25 +84,25 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.security}</version>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.security}</version>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.security}</version>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.security}</version>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <!--Spring-->
@@ -158,6 +160,23 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>${javax.persistence.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>${javax.annotation.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation.api.version}</version>
+        </dependency>
+
         <!--Hibernate-->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -174,7 +193,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <version>${mysql.connector.version}</version>
         </dependency>
         <!--Dbcp-->
         <dependency>
@@ -193,7 +212,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>4.3.2.Final</version>
+            <version>7.0.1.Final</version>
         </dependency>
 
         <!--CgLib-->
@@ -246,7 +265,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sun.jdmk</groupId>
@@ -261,7 +280,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.6</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!--Junit-->

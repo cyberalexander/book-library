@@ -42,7 +42,7 @@ public class BookService implements IBookService {
         System.out.print(WRITE_TITLE);
         String parameter = scanner.nextLine();
         book.setTitle(parameter);
-        System.out.print(WRITE_TITLE);
+        System.out.print(WRITE_AUTHOR);
         parameter = scanner.nextLine();
         book.setAuthor(parameter);
         System.out.print(WRITE_YEAR);

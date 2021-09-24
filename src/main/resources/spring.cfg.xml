@@ -21,13 +21,13 @@
         <property name="url" value="jdbc:mysql://localhost:3306/book_library"/>
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="username" value="root"/>
-        <property name="password" value="21021991"/>
+        <property name="password" value="mysqlalex21!"/>
         <property name="initialSize" value="5"/>
         <property name="maxActive" value="10"/>
     </bean>
 
     <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
@@ -39,17 +39,17 @@
             <props>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="debug">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
                 <prop key="connection.isolation">2</prop>
                 <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
     </bean>
 
 
     <!-- TRANSACTION SETTINGS -->
-    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
