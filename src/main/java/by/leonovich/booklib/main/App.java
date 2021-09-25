@@ -1,9 +1,9 @@
 package by.leonovich.booklib.main;
 
-import by.leonovich.booklib.dao.exception.DaoException;
 import by.leonovich.booklib.domain.Book;
 import by.leonovich.booklib.services.IBookService;
-import by.leonovich.booklib.util.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.File;
@@ -17,6 +17,7 @@ import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
  * Hello world!
  */
 public class App {
+    protected static final Logger LOG = LoggerFactory.getLogger(App.class);
 
     private static Boolean needMenu = true;
     private static IBookService bookService;
@@ -29,16 +30,12 @@ public class App {
         bookService = (IBookService) ac.getBean(BOOK_SERVICE_BEAN);
     }
 
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws Exception {
+            LOG.info("Context initialized : {}", ac.getApplicationStartup());
             menu();
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-
     }
 
-    public static void menu() throws DaoException {
+    public static void menu() throws Exception {
         Book book = null;
         while (needMenu) {
             printMenu();

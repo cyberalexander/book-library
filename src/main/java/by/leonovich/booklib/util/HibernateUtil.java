@@ -1,16 +1,17 @@
 package by.leonovich.booklib.util;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by alexanderleonovich on 11.06.15.
  */
 public class HibernateUtil {
-    private static final Logger logger = Logger.getLogger(HibernateUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
     private static HibernateUtil util = null;
     private final ThreadLocal sessions = new ThreadLocal();
     private SessionFactory sessionFactory = null;

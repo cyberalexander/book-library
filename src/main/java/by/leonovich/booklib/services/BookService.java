@@ -3,18 +3,26 @@ package by.leonovich.booklib.services;
 import by.leonovich.booklib.dao.BookDao;
 import by.leonovich.booklib.dao.exception.DaoException;
 import by.leonovich.booklib.domain.Book;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static by.leonovich.booklib.util.Constants.ConstList.*;
+import static by.leonovich.booklib.util.Constants.ConstList.WRITE_AUTHOR;
+import static by.leonovich.booklib.util.Constants.ConstList.WRITE_ID;
+import static by.leonovich.booklib.util.Constants.ConstList.WRITE_TITLE;
+import static by.leonovich.booklib.util.Constants.ConstList.WRITE_YEAR;
 
 /**
  * Created by alexanderleonovich on 12.06.15.
@@ -23,7 +31,7 @@ import static by.leonovich.booklib.util.Constants.ConstList.*;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class BookService implements IBookService {
-    private static final Logger log = Logger.getLogger(BookService.class);
+    private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
     @Autowired
     private BookDao bookDao;
@@ -64,7 +72,7 @@ public class BookService implements IBookService {
         try {
             book = bookDao.get(id);
         } catch (DaoException e) {
-            log.error(e);
+            log.error("Failed to get book.", e);
         }
         System.out.print(book);
         return book;
@@ -79,7 +87,7 @@ public class BookService implements IBookService {
                 System.out.println(element.toString());
             }
         } catch (DaoException e) {
-            log.error(e);
+            log.error("Failed to get books.", e);
         }
         return list;
     }
@@ -115,9 +123,9 @@ public class BookService implements IBookService {
                 }
             }
         } catch (FileNotFoundException e) {
-            log.error(e);
+            throw new RuntimeException("File " + file.getPath() + " not found.", e);
         } catch (IOException e) {
-            log.error(e);
+            throw new RuntimeException("Exception while reading the file " + file.getPath(), e);
         }
         return list;
     }

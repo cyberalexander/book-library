@@ -1,17 +1,22 @@
 package by.leonovich.booklib.aspects;
 
 import by.leonovich.booklib.domain.Book;
-import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by alexanderleonovich on 12.06.15.
  */
 @Aspect
 public class Work {
-    private static final Logger log = Logger.getLogger(Work.class);
+    private static final Logger log = LoggerFactory.getLogger(Work.class);
 
     @Pointcut("execution(* by.leonovich.booklib.services.BookService.createBook(by.leonovich.booklib.domain.Book))")
     public void performance() {

@@ -1,6 +1,7 @@
 package by.leonovich.booklib.aspects;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("notifier")
 public class Notifier {
-    private static final Logger log = Logger.getLogger(Notifier.class);
+    private static final Logger log = LoggerFactory.getLogger(Notifier.class);
 
     public void notifyBefore() {
         log.info("<= Notification before method =>");
