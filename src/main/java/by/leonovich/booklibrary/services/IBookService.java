@@ -1,7 +1,7 @@
-package by.leonovich.booklib.services;
+package by.leonovich.booklibrary.services;
 
-import by.leonovich.booklib.dao.exception.DaoException;
-import by.leonovich.booklib.domain.Book;
+import by.leonovich.booklibrary.dao.exception.DaoException;
+import by.leonovich.booklibrary.domain.Book;
 
 import java.io.File;
 import java.util.List;

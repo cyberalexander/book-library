@@ -1,8 +1,7 @@
-package by.leonovich.booklib.dao;
+package by.leonovich.booklibrary.dao;
 
-import by.leonovich.booklib.dao.exception.DaoException;
+import by.leonovich.booklibrary.dao.exception.DaoException;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 

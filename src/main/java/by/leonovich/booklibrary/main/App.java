@@ -1,7 +1,7 @@
-package by.leonovich.booklib.main;
+package by.leonovich.booklibrary.main;
 
-import by.leonovich.booklib.domain.Book;
-import by.leonovich.booklib.services.IBookService;
+import by.leonovich.booklibrary.domain.Book;
+import by.leonovich.booklibrary.services.IBookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -9,9 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.File;
 import java.util.Scanner;
 
-import static by.leonovich.booklib.util.Constants.ConstList.BOOK_SERVICE_BEAN;
-import static by.leonovich.booklib.util.Constants.ConstList.FILE;
-import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
+import static by.leonovich.booklibrary.util.Constants.ConstList.BOOK_SERVICE_BEAN;
+import static by.leonovich.booklibrary.util.Constants.ConstList.FILE;
+import static by.leonovich.booklibrary.util.Constants.ConstList.SPRING_SETTINGS;
 import static java.lang.System.out;
 
 

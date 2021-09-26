@@ -1,18 +1,17 @@
-package by.leonovich.booklib.dao;
+package by.leonovich.booklibrary.dao;
 
-import by.leonovich.booklib.domain.Book;
+import by.leonovich.booklibrary.domain.Book;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import static by.leonovich.booklib.util.Constants.ConstList.BOOK_DAO_BEAN;
-import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
+import static by.leonovich.booklibrary.util.Constants.ConstList.BOOK_DAO_BEAN;
+import static by.leonovich.booklibrary.util.Constants.ConstList.SPRING_SETTINGS;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 

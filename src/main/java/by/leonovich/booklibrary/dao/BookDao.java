@@ -1,6 +1,6 @@
-package by.leonovich.booklib.dao;
+package by.leonovich.booklibrary.dao;
 
-import by.leonovich.booklib.domain.Book;
+import by.leonovich.booklibrary.domain.Book;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

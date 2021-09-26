@@ -1,4 +1,4 @@
-package by.leonovich.booklib.aspects;
+package by.leonovich.booklibrary.aspects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

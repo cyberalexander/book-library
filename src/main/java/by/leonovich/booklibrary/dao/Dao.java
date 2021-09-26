@@ -1,6 +1,6 @@
-package by.leonovich.booklib.dao;
+package by.leonovich.booklibrary.dao;
 
-import by.leonovich.booklib.dao.exception.DaoException;
+import by.leonovich.booklibrary.dao.exception.DaoException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

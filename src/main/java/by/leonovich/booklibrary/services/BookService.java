@@ -1,8 +1,8 @@
-package by.leonovich.booklib.services;
+package by.leonovich.booklibrary.services;
 
-import by.leonovich.booklib.dao.BookDao;
-import by.leonovich.booklib.dao.exception.DaoException;
-import by.leonovich.booklib.domain.Book;
+import by.leonovich.booklibrary.dao.BookDao;
+import by.leonovich.booklibrary.dao.exception.DaoException;
+import by.leonovich.booklibrary.domain.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static by.leonovich.booklib.util.Constants.ConstList.WRITE_AUTHOR;
-import static by.leonovich.booklib.util.Constants.ConstList.WRITE_ID;
-import static by.leonovich.booklib.util.Constants.ConstList.WRITE_TITLE;
-import static by.leonovich.booklib.util.Constants.ConstList.WRITE_YEAR;
+import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_AUTHOR;
+import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_ID;
+import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_TITLE;
+import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_YEAR;
 
 /**
  * Created by alexanderleonovich on 12.06.15.

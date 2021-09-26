@@ -1,4 +1,4 @@
-package by.leonovich.booklib.domain;
+package by.leonovich.booklibrary.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

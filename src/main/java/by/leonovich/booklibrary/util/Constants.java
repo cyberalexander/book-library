@@ -1,4 +1,4 @@
-package by.leonovich.booklib.util;
+package by.leonovich.booklibrary.util;
 
 /**
  * Created by alexanderleonovich on 11.06.15.

@@ -1,6 +1,6 @@
-package by.leonovich.booklib.aspects;
+package by.leonovich.booklibrary.aspects;
 
-import by.leonovich.booklib.domain.Book;
+import by.leonovich.booklibrary.domain.Book;
 import org.apache.commons.lang3.time.StopWatch;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -25,11 +25,11 @@ import java.util.concurrent.TimeUnit;
 public class WorkAspect {
     private static final Logger log = LoggerFactory.getLogger(WorkAspect.class);
 
-    @Pointcut("execution(* by.leonovich.booklib.services.BookService.createBook(by.leonovich.booklib.domain.Book))")
+    @Pointcut("execution(* by.leonovich.booklibrary.services.BookService.createBook(by.leonovich.booklibrary.domain.Book))")
     public void performance() {
     }
 
-    @Pointcut("execution(* by.leonovich.booklib.dao.Dao.save(*)) && args(book)")
+    @Pointcut("execution(* by.leonovich.booklibrary.dao.Dao.save(*)) && args(book)")
     public void intercept(Book book) {
     }
 

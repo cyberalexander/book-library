@@ -1,4 +1,4 @@
-package by.leonovich.booklib.util;
+package by.leonovich.booklibrary.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

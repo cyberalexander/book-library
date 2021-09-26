@@ -1,5 +1,4 @@
-# Books Library demo project
-
+# Book Library demo project
 
 This sample DEMO project is dedicated to show the basic abilities of 
 spring & hibernate frameworks.

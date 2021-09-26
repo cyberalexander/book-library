@@ -1,4 +1,4 @@
-package by.leonovich.booklib.dao.exception;
+package by.leonovich.booklibrary.dao.exception;
 
 /**
  * Created by alexanderleonovich on 11.06.15.
