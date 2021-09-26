@@ -19,11 +19,10 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="url" value="jdbc:mysql://localhost:3306/book_library"/>
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="username" value="****"/>
-        <property name="password" value="****"/>
-        <property name="initialSize" value="5"/>
-        <property name="maxActive" value="10"/>
+        <property name="username" value="*****"/>
+        <property name="password" value="*****"/>
+        <property name="initialSize" value="100"/>
+        <property name="maxActive" value="100"/>
     </bean>
 
     <bean id="sessionFactory"
