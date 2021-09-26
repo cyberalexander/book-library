@@ -29,7 +29,7 @@ public class WorkAspect {
     public void performance() {
     }
 
-    @Pointcut("execution(* by.leonovich.booklib.services.BookService.createBook(by.leonovich.booklib.domain.Book)) && args(book)")
+    @Pointcut("execution(* by.leonovich.booklib.dao.Dao.save(*)) && args(book)")
     public void intercept(Book book) {
     }
 
