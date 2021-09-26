@@ -12,26 +12,25 @@ import java.util.Scanner;
 import static by.leonovich.booklib.util.Constants.ConstList.BOOK_SERVICE_BEAN;
 import static by.leonovich.booklib.util.Constants.ConstList.FILE;
 import static by.leonovich.booklib.util.Constants.ConstList.SPRING_SETTINGS;
+import static java.lang.System.out;
 
-/**
- * Hello world!
- */
+
 public class App {
     protected static final Logger LOG = LoggerFactory.getLogger(App.class);
 
-    private static Boolean needMenu = true;
-    private static IBookService bookService;
+    private static boolean needMenu = true;
+    private static final IBookService bookService;
     private static File file;
-    private static ClassPathXmlApplicationContext ac;
+    private static final ClassPathXmlApplicationContext ac;
 
     static {
         file = new File(App.class.getClassLoader().getResource(FILE).getPath());
-        ac = new ClassPathXmlApplicationContext(new String[]{SPRING_SETTINGS});
+        ac = new ClassPathXmlApplicationContext(SPRING_SETTINGS);
         bookService = (IBookService) ac.getBean(BOOK_SERVICE_BEAN);
     }
 
     public static void main(String[] args) throws Exception {
-            LOG.info("Context initialized : {}", ac.getApplicationStartup());
+            LOG.info("Context initialized : {}", ac.getEnvironment());
             menu();
     }
 
@@ -40,45 +39,25 @@ public class App {
         while (needMenu) {
             printMenu();
             Scanner scanner = new Scanner(System.in);
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 0:
-                    System.exit(0);
-                    break;
-                case 1:
-                    // Add book
-                    book = bookService.createBook(book);
-                    break;
-                case 2:
-                    //Delete book
-                    bookService.deleteBook();
-                    break;
-                case 3:
-                    // Get Books
-                    bookService.getBooks();
-                    break;
-                case 4:
-                    // Get Book
-                    bookService.findBook();
-                    break;
-                case 5:
-                    // Parse file and write content in database
-                    bookService.addBooks(file);
-                    break;
-                default:
-                    needMenu = true;
-                    break;
+            switch (scanner.nextInt()) {
+                case 0 -> System.exit(0);
+                case 1 -> bookService.createBook(book);
+                case 2 -> bookService.deleteBook();
+                case 3 -> bookService.getBooks();
+                case 4 -> bookService.findBook();
+                case 5 -> bookService.addBooks(file);
+                default -> out.println("Please make your choice");
             }
             needMenu = true;
         }
     }
 
     private static void printMenu() {
-        System.out.println("\n+-------------------------------------------------------+");
-        System.out.println("|        Hello, user! You are in menu. Do action:         |");
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
-        System.out.println("|  0. Exit     |      1. Add book  |     2. Delete book   |      3. Get Books   |    4. Get Book  |  5. Parse file & write content in db |");
-        System.out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+        out.println("\n+-------------------------------------------------------+");
+        out.println("|        Hello, user! You are in menu. Do action:         |");
+        out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
+        out.println("|  0. Exit     |      1. Add book  |     2. Delete book   |      3. Get Books   |    4. Get Book  |  5. Parse file & write content in db |");
+        out.println("+----------------------------------------------------------------------------------------------------------------------------------------+");
 
     }
 }
