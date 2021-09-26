@@ -33,12 +33,12 @@ import static by.leonovich.booklib.util.Constants.ConstList.WRITE_YEAR;
 public class BookService implements IBookService {
     private static final Logger log = LoggerFactory.getLogger(BookService.class);
 
+    private final BookDao bookDao;
+
     @Autowired
-    private BookDao bookDao;
-
-    public BookService() {
+    public BookService(BookDao bookDao) {
+        this.bookDao = bookDao;
     }
-
 
     @Override
     public Book createBook(Book book) throws DaoException {
@@ -128,9 +128,5 @@ public class BookService implements IBookService {
             throw new RuntimeException("Exception while reading the file " + file.getPath(), e);
         }
         return list;
-    }
-
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
     }
 }

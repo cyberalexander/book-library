@@ -13,14 +13,14 @@ public class Notifier {
     private static final Logger log = LoggerFactory.getLogger(Notifier.class);
 
     public void notifyBefore() {
-        log.info("<= Notification before method =>");
+        log.info("Notification before method >>> ");
     }
 
     public void notifyAfter() {
-        log.info("<= Notification after method =>");
+        log.info("Notification after method >>> ");
     }
 
     public void notifyAfterException() {
-        log.info("<= Notification after throws Exception =>");
+        log.info("Notification after throws Exception >>> ");
     }
 }
