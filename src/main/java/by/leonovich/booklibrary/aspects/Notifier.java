@@ -2,13 +2,13 @@ package by.leonovich.booklibrary.aspects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 
 /**
+ * This is a Spring bean registered in {@see spring.cfg.xml}
+ * and it's a part of an Aspect, which is also registered in {@see spring.cfg.xml}
  * Created by alexanderleonovich on 11.06.15.
  */
-@Component("notifier")
 public class Notifier {
     private static final Logger log = LoggerFactory.getLogger(Notifier.class);
 

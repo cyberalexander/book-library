@@ -52,15 +52,13 @@
     </bean>
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
-    <!--<bean id="bookService" class="by.leonovich.booklib.services.BookService"/>
-
-    <bean id="bookDao" class="by.leonovich.booklib.dao.BookDao"/>-->
-
     <bean id="bookEntity" class="by.leonovich.booklibrary.domain.Book">
         <constructor-arg index="0" value="testtitle"/>
         <constructor-arg index="1" value="testauthor"/>
         <constructor-arg index="2" value="2015"/>
     </bean>
+
+    <bean id="notifier" class="by.leonovich.booklibrary.aspects.Notifier"/>
 
     <aop:config>
         <!-- <aop:advisor advice-ref="txAdice" pointcut="execution(* by.leonovich.booklib.services.BookService.*(..))"/>-->
@@ -68,6 +66,7 @@
             <aop:pointcut id="advice" expression="execution(* *.findBook())"/>
             <aop:before pointcut-ref="advice" method="notifyBefore"/>
             <aop:after pointcut-ref="advice" method="notifyAfter"/>
+            <aop:after-throwing pointcut-ref="advice" method="notifyAfterException"/>
         </aop:aspect>
     </aop:config>
 </beans>
