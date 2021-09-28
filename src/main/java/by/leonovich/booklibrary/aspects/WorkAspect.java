@@ -25,11 +25,11 @@ import java.util.concurrent.TimeUnit;
 public class WorkAspect {
     private static final Logger log = LoggerFactory.getLogger(WorkAspect.class);
 
-    @Pointcut("execution(* by.leonovich.booklibrary.services.BookServiceImpl.createBook(by.leonovich.booklibrary.domain.Book))")
+    @Pointcut("execution(* by.leonovich.booklibrary.services.BookService.createBook(by.leonovich.booklibrary.domain.Book))")
     public void performance() {
     }
 
-    @Pointcut("execution(* by.leonovich.booklibrary.dao.Dao.save(*)) && args(book)")
+    @Pointcut("execution(* by.leonovich.booklibrary.dao.AbstractDao.save(*)) && args(book)")
     public void intercept(Book book) {
     }
 

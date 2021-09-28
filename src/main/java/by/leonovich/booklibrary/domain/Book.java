@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serial;
 import java.io.Serializable;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -15,7 +16,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "T_BOOK")
 public class Book implements Serializable{
-    private static final long serialVersionUID = 4519960040846861L;
+    @Serial
+    private static final long serialVersionUID = 2302932951774527371L;
 
     @Id
     @Column(name = "F_BOOK_ID", nullable = false, unique = true)

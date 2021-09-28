@@ -14,18 +14,13 @@ import java.util.List;
  * Specified for Book-entity dao-layer
  */
 @Repository
-public class BookDao extends Dao<Book> {
+public class BookDao extends AbstractDao<Book> {
 
     @Autowired
     public BookDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 
-    /**
-     * Method - parser for table books
-     * @param session
-     * @return
-     */
     @Override
     protected List<Book> parseResultForGetAll(Session session) {
         List<Book> list;
