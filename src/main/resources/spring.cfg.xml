@@ -52,9 +52,9 @@
     </bean>
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
-    <bean id="bookEntity" class="by.leonovich.booklibrary.domain.Book">
-        <constructor-arg index="0" value="testtitle"/>
-        <constructor-arg index="1" value="testauthor"/>
+    <bean id="book" class="by.leonovich.booklibrary.domain.Book" scope="prototype">
+        <constructor-arg index="0" value="draft_title"/>
+        <constructor-arg index="1" value="draft_author"/>
         <constructor-arg index="2" value="2015"/>
     </bean>
 

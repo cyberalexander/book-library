@@ -1,7 +1,8 @@
 package by.leonovich.booklibrary.main;
 
 import by.leonovich.booklibrary.domain.Book;
-import by.leonovich.booklibrary.services.IBookService;
+import by.leonovich.booklibrary.services.BookService;
+import by.leonovich.booklibrary.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,14 +20,14 @@ public class App {
     protected static final Logger LOG = LoggerFactory.getLogger(App.class);
 
     private static boolean needMenu = true;
-    private static final IBookService bookService;
+    private static final BookService bookService;
     private static File file;
     private static final ClassPathXmlApplicationContext ac;
 
     static {
         file = new File(App.class.getClassLoader().getResource(FILE).getPath());
         ac = new ClassPathXmlApplicationContext(SPRING_SETTINGS);
-        bookService = (IBookService) ac.getBean(BOOK_SERVICE_BEAN);
+        bookService = (BookService) ac.getBean(BOOK_SERVICE_BEAN);
     }
 
     public static void main(String[] args) throws Exception {
@@ -35,7 +36,7 @@ public class App {
     }
 
     public static void menu() throws Exception {
-        Book book = null;
+        Book book = (Book) ac.getBean(Constants.ConstList.BOOK_BEAN);
         while (needMenu) {
             printMenu();
             Scanner scanner = new Scanner(System.in);
