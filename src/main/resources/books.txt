@@ -7,3 +7,4 @@ Java 8 in Action, Raoul-Gabriel Urma, 2014
 Core Java for the Impatient, Cay S. Horstmann, 2015
 Java Concurrency in Practice,  Brian Goetz, 2006
 Core Java Volume I--Fundamentals (9th Edition), Cay S. Horstmann, 2012
+Spring in Action (Fifth edition), Craig Walls, 2019

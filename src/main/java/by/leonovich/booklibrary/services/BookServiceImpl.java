@@ -3,6 +3,7 @@ package by.leonovich.booklibrary.services;
 import by.leonovich.booklibrary.dao.BookDao;
 import by.leonovich.booklibrary.dao.exception.DaoException;
 import by.leonovich.booklibrary.domain.Book;
+import by.leonovich.booklibrary.util.Try;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -94,15 +94,17 @@ public class BookServiceImpl implements BookService {
     }
 
     public void addBooks(File file) throws DaoException {
-        List<String> books = parseFile(file);
-        for (String element : books) {
-            Book book = new Book();
-            String[] parameters = element.split(", ");
-            book.setTitle(parameters[0]);
-            book.setAuthor(parameters[1]);
-            book.setYear(parameters[2]);
-            bookDao.save(book);
-        }
+        parseFileLines(file).stream()
+            .map(line -> {
+                Book book = new Book();
+                String[] parameters = line.split(", ");
+                book.setTitle(parameters[0]);
+                book.setAuthor(parameters[1]);
+                book.setYear(parameters[2]);
+                return book;
+            })
+            .map(book -> Try.of(() -> bookDao.save(book)))
+            .forEach(out::println);
     }
 
     @Override
@@ -112,22 +114,16 @@ public class BookServiceImpl implements BookService {
     }
 
 
-    private List<String> parseFile(File file) {
-        List<String> list = new ArrayList<>();
+    private List<String> parseFileLines(File file) {
+        /*
+        * If you want to return Stream instead of List, then do not use try-with-resources, do not close reader here
+        */
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            while (true) {
-                String line = bufferedReader.readLine();
-                if (line != null) {
-                    list.add(line);
-                }else {
-                    break;
-                }
-            }
+            return bufferedReader.lines().toList();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File " + file.getPath() + " not found.", e);
         } catch (IOException e) {
             throw new RuntimeException("Exception while reading the file " + file.getPath(), e);
         }
-        return list;
     }
 }

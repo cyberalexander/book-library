@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface Dao<T> {
 
-    void save(T t) throws DaoException;
+    Serializable save(T t) throws DaoException;
 
     void saveOrUpdate(T t) throws DaoException;
 

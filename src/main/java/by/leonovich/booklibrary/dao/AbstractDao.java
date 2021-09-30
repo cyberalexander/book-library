@@ -31,8 +31,8 @@ public abstract class AbstractDao<T> implements Dao<T> {
 
 
     @Override
-    public void save(T t) throws DaoException {
-        getCurrentSession().save(t);
+    public Serializable save(T t) throws DaoException {
+        return getCurrentSession().save(t);
     }
 
     @Override
