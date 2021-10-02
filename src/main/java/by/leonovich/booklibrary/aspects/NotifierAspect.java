@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
  * and it's a part of an Aspect, which is also registered in {@see spring.cfg.xml}
  * Created by alexanderleonovich on 11.06.15.
  */
-public class Notifier {
-    private static final Logger log = LoggerFactory.getLogger(Notifier.class);
+public class NotifierAspect {
+    private static final Logger log = LoggerFactory.getLogger(NotifierAspect.class);
 
     public void notifyBefore() {
         log.info("Notification before method >>> ");

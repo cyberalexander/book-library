@@ -3,6 +3,8 @@ package by.leonovich.booklibrary.services;
 import by.leonovich.booklibrary.dao.BookDao;
 import by.leonovich.booklibrary.dao.exception.DaoException;
 import by.leonovich.booklibrary.domain.Book;
+import by.leonovich.booklibrary.services.exception.ServiceException;
+import by.leonovich.booklibrary.util.Constants;
 import by.leonovich.booklibrary.util.Try;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +18,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
-
-import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_AUTHOR;
-import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_ID;
-import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_TITLE;
-import static by.leonovich.booklibrary.util.Constants.ConstList.WRITE_YEAR;
 import static java.lang.System.out;
 
 /**
@@ -42,45 +40,50 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book createBook(Book book) throws DaoException {
+    public Serializable createBook(Book book) throws ServiceException {
         out.println("Please enter book description:");
         if (book == null) {
             book = new Book();
         }
         Scanner scanner = new Scanner(System.in);
-        out.print(WRITE_TITLE);
+        out.print(Constants.WRITE_TITLE);
         String parameter = scanner.nextLine();
         book.setTitle(parameter);
-        out.print(WRITE_AUTHOR);
+        out.print(Constants.WRITE_AUTHOR);
         parameter = scanner.nextLine();
         book.setAuthor(parameter);
-        out.print(WRITE_YEAR);
+        out.print(Constants.WRITE_YEAR);
         parameter = scanner.nextLine();
         book.setYear(parameter);
-        bookDao.save(book);
-        return book;
+        Serializable bookId;
+        try {
+            bookId = bookDao.save(book);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        return bookId;
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public Book findBook() {
+    public Book findBook() throws ServiceException {
         out.println("Get by Id. Please enter book id:");
-        out.print(WRITE_ID);
+        out.print(Constants.WRITE_ID);
 
         Scanner scanner = new Scanner(System.in);
-        Book book = null;
+        Book book;
         Long id = scanner.nextLong();
         try {
             book = bookDao.get(id);
         } catch (DaoException e) {
-            log.error("Failed to get book.", e);
+            throw new ServiceException(e);
         }
         out.print(book);
         return book;
     }
 
     @Override
-    public List<Book> getBooks() {
+    public List<Book> getBooks() throws ServiceException {
         List<Book> list = null;
         try {
             list = bookDao.getAll();
@@ -88,12 +91,12 @@ public class BookServiceImpl implements BookService {
                 out.println(element.toString());
             }
         } catch (DaoException e) {
-            log.error("Failed to get books.", e);
+            throw new ServiceException(e);
         }
         return list;
     }
 
-    public void addBooks(File file) throws DaoException {
+    public void addBooks(File file) throws ServiceException {
         parseFileLines(file).stream()
             .map(line -> {
                 Book book = new Book();
@@ -108,9 +111,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook() throws DaoException {
+    public void deleteBook() throws ServiceException {
         Book book = findBook();
-        bookDao.delete(book);
+        try {
+            bookDao.delete(book);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
 

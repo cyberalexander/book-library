@@ -1,9 +1,10 @@
 package by.leonovich.booklibrary.services;
 
-import by.leonovich.booklibrary.dao.exception.DaoException;
 import by.leonovich.booklibrary.domain.Book;
+import by.leonovich.booklibrary.services.exception.ServiceException;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,14 +12,14 @@ import java.util.List;
  */
 public interface BookService {
 
-    Book createBook(Book book) throws DaoException;
+    Serializable createBook(Book book) throws ServiceException;
 
-    Book findBook();
+    Book findBook() throws ServiceException;
 
-    List<Book> getBooks();
+    List<Book> getBooks() throws ServiceException;
 
-    void addBooks(File file) throws DaoException;
+    void addBooks(File file) throws ServiceException;
 
-    void deleteBook() throws DaoException;
+    void deleteBook() throws ServiceException;
 
 }
