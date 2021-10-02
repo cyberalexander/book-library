@@ -29,7 +29,6 @@ public abstract class AbstractDao<T> implements Dao<T> {
         return sessionFactory.getCurrentSession();
     }
 
-
     @Override
     public Serializable save(T t) throws DaoException {
         return getCurrentSession().save(t);

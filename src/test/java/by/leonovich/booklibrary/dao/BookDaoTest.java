@@ -1,6 +1,7 @@
 package by.leonovich.booklibrary.dao;
 
 import by.leonovich.booklibrary.domain.Book;
+import by.leonovich.booklibrary.util.Constants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -10,8 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import static by.leonovich.booklibrary.util.Constants.ConstList.BOOK_DAO_BEAN;
-import static by.leonovich.booklibrary.util.Constants.ConstList.SPRING_SETTINGS;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -29,8 +28,8 @@ public class BookDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        ac = new ClassPathXmlApplicationContext(new String[]{SPRING_SETTINGS});
-        bookDao = (BookDao) ac.getBean(BOOK_DAO_BEAN);
+        ac = new ClassPathXmlApplicationContext(new String[]{Constants.SPRING_SETTINGS});
+        bookDao = (BookDao) ac.getBean(Constants.BOOK_DAO_BEAN);
         book = (Book) ac.getBean("bookEntity");
     }
 
@@ -40,7 +39,7 @@ public class BookDaoTest {
     }
 
     @Test
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void testSave() throws Exception {
         assertNull("Id before save() is not null.", book.getBookId());
         bookDao.save(book);

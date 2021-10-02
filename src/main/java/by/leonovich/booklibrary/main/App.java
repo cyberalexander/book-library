@@ -10,33 +10,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.File;
 import java.util.Scanner;
 
-import static by.leonovich.booklibrary.util.Constants.ConstList.BOOK_SERVICE_BEAN;
-import static by.leonovich.booklibrary.util.Constants.ConstList.FILE;
-import static by.leonovich.booklibrary.util.Constants.ConstList.SPRING_SETTINGS;
 import static java.lang.System.out;
 
-
 public class App {
-    protected static final Logger LOG = LoggerFactory.getLogger(App.class);
-
+    private static final Logger log = LoggerFactory.getLogger(App.class);
     private static boolean needMenu = true;
     private static final BookService bookService;
     private static File file;
     private static final ClassPathXmlApplicationContext ac;
 
     static {
-        file = new File(App.class.getClassLoader().getResource(FILE).getPath());
-        ac = new ClassPathXmlApplicationContext(SPRING_SETTINGS);
-        bookService = (BookService) ac.getBean(BOOK_SERVICE_BEAN);
+        file = new File(App.class.getClassLoader().getResource(Constants.FILE).getPath());
+        ac = new ClassPathXmlApplicationContext(Constants.SPRING_SETTINGS);
+        bookService = (BookService) ac.getBean(Constants.BOOK_SERVICE_BEAN);
     }
 
     public static void main(String[] args) throws Exception {
-            LOG.info("Context initialized : {}", ac.getEnvironment());
+            log.info("Context initialized : {}", ac.getEnvironment());
             menu();
     }
 
     public static void menu() throws Exception {
-        Book book = (Book) ac.getBean(Constants.ConstList.BOOK_BEAN);
+        Book book = (Book) ac.getBean(Constants.BOOK_BEAN);
         while (needMenu) {
             printMenu();
             Scanner scanner = new Scanner(System.in);
