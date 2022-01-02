@@ -5,7 +5,7 @@ spring & hibernate frameworks.
 This project was used in <a href="https://www.it-academy.by">IT-Academy</a> as 
 a training sandbox while learning spring & hibernate frameworks during java course.
 
-System name: **BookLibrary**
+System name: **book-library**
 
 ## Getting Started
 build:
