@@ -13,4 +13,5 @@ public final class Constants {
     public static final String BOOK_SERVICE_BEAN = "bookService";
     public static final String BOOK_DAO_BEAN = "bookDao";
     public static final String BOOK_BEAN = "book";
+
 }
