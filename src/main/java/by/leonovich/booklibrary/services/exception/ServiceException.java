@@ -2,7 +2,7 @@ package by.leonovich.booklibrary.services.exception;
 
 /**
  * Created : 02/10/2021 15:09
- * Project : BookLibrary
+ * Project : book-library
  * IDE : IntelliJ IDEA
  *
  * @author alexanderleonovich

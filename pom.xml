@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>by.leonovich.booklibrary</groupId>
-    <artifactId>BookLibrary</artifactId>
+    <artifactId>book-library</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>BookLibrary</name>
+    <name>book-library</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -230,13 +230,13 @@
             <version>${aspectj.version}</version>
         </dependency>
 
-        <dependency>
+        <dependency> <!--Log4j implementation for slf4j-->
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
             <type>pom</type>
         </dependency>
-        <dependency>
+        <dependency> <!--Facade for logging systems-->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
