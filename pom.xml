@@ -1,18 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <groupId>by.leonovich.booklibrary</groupId>
     <artifactId>book-library</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
+    <name>Books library console application.</name>
+    <description>winter-io</description>
+    <url>https://github.com/cyberalexander/book-library</url>
     <packaging>jar</packaging>
 
-    <name>book-library</name>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- ============== Project properties ================= -->
+        <revision>2022.01.04-SNAPSHOT</revision>
         <java.version>16</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- ============== Dependencies versions ============== -->
         <hibernate.version>5.5.7.Final</hibernate.version>
         <spring.version>5.3.10</spring.version>
         <spring.security.version>5.5.1</spring.security.version>
@@ -27,6 +36,8 @@
         <javax.validation.api.version>2.0.0.Final</javax.validation.api.version>
         <junit.version>4.13.1</junit.version>
         <apache.commons.lang.version>3.10</apache.commons.lang.version>
+
+        <!-- ============== Plugins versions =================== -->
     </properties>
 
     <build>
