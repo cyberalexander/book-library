@@ -12,15 +12,15 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class App {
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+public class BookLibraryApplication {
+    private static final Logger log = LoggerFactory.getLogger(BookLibraryApplication.class);
     private static boolean needMenu = true;
     private static final BookService bookService;
     private static File file;
     private static final ClassPathXmlApplicationContext ac;
 
     static {
-        file = new File(App.class.getClassLoader().getResource(Constants.FILE).getPath());
+        file = new File(BookLibraryApplication.class.getClassLoader().getResource(Constants.FILE).getPath());
         ac = new ClassPathXmlApplicationContext(Constants.SPRING_SETTINGS);
         bookService = (BookService) ac.getBean(Constants.BOOK_SERVICE_BEAN);
     }
