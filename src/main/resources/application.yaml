@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: info
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/book_library
+    username: *****
+    password: *****
