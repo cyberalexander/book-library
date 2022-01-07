@@ -1,47 +1,39 @@
-package by.leonovich.booklibrary.main;
+package by.leonovich.booklibrary;
 
-import by.leonovich.booklibrary.domain.Book;
 import by.leonovich.booklibrary.services.BookService;
 import by.leonovich.booklibrary.util.Constants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.File;
 import java.util.Scanner;
 
 import static java.lang.System.out;
 
+@Log4j2
+@SpringBootApplication
 public class BookLibraryApplication {
-    private static final Logger log = LoggerFactory.getLogger(BookLibraryApplication.class);
     private static boolean needMenu = true;
-    private static final BookService bookService;
-    private static File file;
-    private static final ClassPathXmlApplicationContext ac;
 
-    static {
-        file = new File(BookLibraryApplication.class.getClassLoader().getResource(Constants.FILE).getPath());
-        ac = new ClassPathXmlApplicationContext(Constants.SPRING_SETTINGS);
-        bookService = (BookService) ac.getBean(Constants.BOOK_SERVICE_BEAN);
+    public static void main(final String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(BookLibraryApplication.class, args);
+        BookService bookService = context.getBean(Constants.BOOK_SERVICE_BEAN, BookService.class);
+
+        log.info("Context initialized : {}", context.getEnvironment());
+        menu(bookService);
     }
 
-    public static void main(String[] args) throws Exception {
-            log.info("Context initialized : {}", ac.getEnvironment());
-            menu();
-    }
-
-    public static void menu() throws Exception {
-        Book book = (Book) ac.getBean(Constants.BOOK_BEAN);
+    public static void menu(BookService bookService) {
         while (needMenu) {
             printMenu();
             Scanner scanner = new Scanner(System.in);
             switch (scanner.nextInt()) {
                 case 0 -> System.exit(0);
-                case 1 -> bookService.createBook(book);
+                case 1 -> bookService.createBook();
                 case 2 -> bookService.deleteBook();
                 case 3 -> bookService.getBooks();
                 case 4 -> bookService.findBook();
-                case 5 -> bookService.addBooks(file);
                 default -> out.println("Please make your choice");
             }
             needMenu = true;
