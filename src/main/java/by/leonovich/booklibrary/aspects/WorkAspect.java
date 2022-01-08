@@ -20,8 +20,9 @@ import java.util.concurrent.TimeUnit;
  * Spring Aspect demo to show the basic abilities of Spring AOP.
  * Created by alexanderleonovich on 12.06.15.
  */
-@Aspect
-@Component
+//TODO modify this aspect to listed JPA repository instead of legacy AbstractDao
+//@Aspect
+//@Component
 public class WorkAspect {
     private static final Logger log = LoggerFactory.getLogger(WorkAspect.class);
 
@@ -29,7 +30,7 @@ public class WorkAspect {
     public void performance() {
     }
 
-    @Pointcut("execution(* by.leonovich.booklibrary.dao.AbstractDao.save(*)) && args(book)")
+    @Pointcut("execution(* by.leonovich.booklibrary.repository.AbstractDao.save(*)) && args(book)")
     public void intercept(Book book) {
     }
 

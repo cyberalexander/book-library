@@ -1,4 +1,4 @@
-package by.leonovich.booklibrary.dao;
+package by.leonovich.booklibrary.repository;
 
 import by.leonovich.booklibrary.domain.Book;
 import org.springframework.data.repository.CrudRepository;
