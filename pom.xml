@@ -10,10 +10,10 @@
     <groupId>by.leonovich.booklibrary</groupId>
     <artifactId>book-library</artifactId>
     <version>${revision}</version>
-    <name>Books library console application.</name>
-    <description>winter-io</description>
-    <url>https://github.com/cyberalexander/book-library</url>
     <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
+    <description>Books library console application.</description>
+    <url>https://github.com/cyberalexander/book-library</url>
 
     <properties>
         <!-- ============== Project properties ================= -->
