@@ -1,7 +1,6 @@
 package by.leonovich.booklibrary.services;
 
 import by.leonovich.booklibrary.domain.Book;
-import by.leonovich.booklibrary.services.exception.ServiceException;
 
 import java.io.File;
 import java.io.Serializable;
@@ -12,14 +11,14 @@ import java.util.List;
  */
 public interface BookService {
 
-    Serializable createBook(Book book) throws ServiceException;
+    Serializable createBook();
 
-    Book findBook() throws ServiceException;
+    Book findBook();
 
-    List<Book> getBooks() throws ServiceException;
+    List<Book> getBooks();
 
-    void addBooks(File file) throws ServiceException;
+    void addBooks(File file);
 
-    void deleteBook() throws ServiceException;
+    void deleteBook();
 
 }
