@@ -1,4 +1,4 @@
-package by.leonovich.booklibrary.services;
+package by.leonovich.booklibrary.service;
 
 import by.leonovich.booklibrary.domain.Book;
 import by.leonovich.booklibrary.repository.BookRepository;
