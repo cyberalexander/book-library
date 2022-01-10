@@ -1,6 +1,6 @@
 package by.leonovich.booklibrary;
 
-import by.leonovich.booklibrary.services.BookService;
+import by.leonovich.booklibrary.service.BookService;
 import by.leonovich.booklibrary.util.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;

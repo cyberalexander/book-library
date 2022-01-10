@@ -1,6 +1,6 @@
 package by.leonovich.booklibrary;
 
-import by.leonovich.booklibrary.services.BookService;
+import by.leonovich.booklibrary.service.BookService;
 import by.leonovich.booklibrary.util.Constants;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
