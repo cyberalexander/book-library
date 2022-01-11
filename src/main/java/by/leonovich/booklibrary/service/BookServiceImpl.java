@@ -2,6 +2,7 @@ package by.leonovich.booklibrary.service;
 
 import by.leonovich.booklibrary.domain.Book;
 import by.leonovich.booklibrary.repository.BookRepository;
+import by.leonovich.booklibrary.util.ConsoleScanner;
 import by.leonovich.booklibrary.util.Constants;
 import by.leonovich.booklibrary.util.Try;
 import lombok.extern.log4j.Log4j2;
@@ -37,9 +38,11 @@ import static java.lang.System.out;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository repository;
+    private final ConsoleScanner scanner;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, ConsoleScanner consoleScanner) {
         this.repository = bookRepository;
+        this.scanner = consoleScanner;
     }
 
     @Override
