@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 @Log4j2
-public class ConsoleScanner implements AutoCloseable {
+public class ConsoleScanner {
     private final Scanner scanner;
 
     public ConsoleScanner(final Scanner s) {
@@ -34,7 +34,6 @@ public class ConsoleScanner implements AutoCloseable {
         return scanner.nextLine();
     }
 
-    @Override
     public void close() {
         log.warn("{} closed!", this.scanner.getClass());
         this.scanner.close();
