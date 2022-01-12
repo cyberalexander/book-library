@@ -34,6 +34,10 @@ public class ConsoleScanner {
         return scanner.nextLine();
     }
 
+    public long nextLong() {
+        return scanner.nextLong();
+    }
+
     public void close() {
         log.warn("{} closed!", this.scanner.getClass());
         this.scanner.close();
