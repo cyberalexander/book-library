@@ -13,6 +13,8 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.Times;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
 /**
  * Created : 11/01/2022 09:31
  * Project : book-library
@@ -49,7 +51,15 @@ class BookServiceImplTest {
 
     @Test
     void findBook() {
-        //TODO implement findBook() unit-test
+        Optional<Book> expected = Optional.of(new Book("test_title", "test_author", "2022"));
+        Mockito.when(scannerMock.nextLong()).thenReturn(Long.MAX_VALUE);
+        Mockito.when(repositoryMock.findById(Mockito.any())).thenReturn(expected);
+
+        Optional<Book> actual = bookService.findBook();
+
+        Assertions.assertEquals(expected, actual, String.format("%s is not equal to %s", expected, actual));
+        Mockito.verify(scannerMock).nextLong();
+        Mockito.verify(repositoryMock).findById(Mockito.any());
     }
 
     @Test
