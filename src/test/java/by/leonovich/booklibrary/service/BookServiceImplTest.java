@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.Times;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,6 +27,7 @@ import java.util.Optional;
 @Log4j2
 @ExtendWith(MockitoExtension.class)
 class BookServiceImplTest {
+    private static final Book TEST_BOOK = new Book("test_title", "test_author", "2022");
 
     @InjectMocks
     private BookServiceImpl bookService;
@@ -36,22 +38,21 @@ class BookServiceImplTest {
 
     @Test
     void createBook() {
-        Book expected = new Book("test_title", "test_author", "2022");
-        Mockito.when(scannerMock.nextLine()).thenReturn(expected.getTitle());
-        Mockito.when(scannerMock.nextLine()).thenReturn(expected.getAuthor());
-        Mockito.when(scannerMock.nextLine()).thenReturn(expected.getYear());
-        Mockito.when(repositoryMock.save(Mockito.any())).thenReturn(expected);
+        Mockito.when(scannerMock.nextLine()).thenReturn(TEST_BOOK.getTitle());
+        Mockito.when(scannerMock.nextLine()).thenReturn(TEST_BOOK.getAuthor());
+        Mockito.when(scannerMock.nextLine()).thenReturn(TEST_BOOK.getYear());
+        Mockito.when(repositoryMock.save(Mockito.any())).thenReturn(TEST_BOOK);
 
         Book actual = bookService.createBook();
 
-        Assertions.assertEquals(expected, actual, String.format("%s is not equal to %s", expected, actual));
+        Assertions.assertEquals(TEST_BOOK, actual, String.format("%s is not equal to %s", TEST_BOOK, actual));
         Mockito.verify(scannerMock, new Times(3)).nextLine();
         Mockito.verify(repositoryMock).save(Mockito.any());
     }
 
     @Test
     void findBook() {
-        Optional<Book> expected = Optional.of(new Book("test_title", "test_author", "2022"));
+        Optional<Book> expected = Optional.of(TEST_BOOK);
         Mockito.when(scannerMock.nextLong()).thenReturn(Long.MAX_VALUE);
         Mockito.when(repositoryMock.findById(Mockito.any())).thenReturn(expected);
 
@@ -64,7 +65,15 @@ class BookServiceImplTest {
 
     @Test
     void getBooks() {
-        //TODO implement getBooks() unit-test
+        List<Book> expected = List.of(TEST_BOOK);
+        Mockito.when(repositoryMock.findAll()).thenReturn(
+            expected
+        );
+
+        List<Book> actual = bookService.getBooks();
+
+        Assertions.assertEquals(expected, actual, String.format("%s is not equal to %s", expected, actual));
+        Mockito.verify(repositoryMock).findAll();
     }
 
     @Test
