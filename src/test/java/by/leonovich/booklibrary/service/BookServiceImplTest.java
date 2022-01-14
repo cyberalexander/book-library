@@ -66,9 +66,7 @@ class BookServiceImplTest {
     @Test
     void getBooks() {
         List<Book> expected = List.of(TEST_BOOK);
-        Mockito.when(repositoryMock.findAll()).thenReturn(
-            expected
-        );
+        Mockito.when(repositoryMock.findAll()).thenReturn(expected);
 
         List<Book> actual = bookService.getBooks();
 
@@ -78,6 +76,13 @@ class BookServiceImplTest {
 
     @Test
     void deleteBook() {
-        //TODO implement deleteBook() unit-test
+        Optional<Book> expected = Optional.of(TEST_BOOK);
+        Mockito.when(scannerMock.nextLong()).thenReturn(Long.MAX_VALUE);
+        Mockito.when(repositoryMock.findById(Mockito.any())).thenReturn(expected);
+
+        bookService.deleteBook();
+
+        Mockito.verify(scannerMock).nextLong();
+        Mockito.verify(repositoryMock).delete(TEST_BOOK);
     }
 }
