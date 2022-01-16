@@ -5,6 +5,7 @@ import by.leonovich.booklibrary.domain.Book;
 import java.io.File;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * An interface dedicated to provide an API to operate with {@link Book} entity.
@@ -15,7 +16,7 @@ public interface BookService {
 
     Serializable createBook();
 
-    Book findBook();
+    Optional<Book> findBook();
 
     List<Book> getBooks();
 

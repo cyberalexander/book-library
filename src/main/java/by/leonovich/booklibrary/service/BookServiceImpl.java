@@ -15,12 +15,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
+import static java.lang.System.err;
 import static java.lang.System.out;
 
 /**
@@ -46,46 +45,47 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Serializable createBook() {
-        out.println("Please enter book description:");
-        Book book = new Book();
-        Scanner scanner = new Scanner(System.in);
-        out.print(Constants.WRITE_TITLE);
-        String parameter = scanner.nextLine();
-        book.setTitle(parameter);
+    public Book createBook() {
+        out.print(Constants.WRITE_TITLE + scanner.nextLine());
+        String title = scanner.nextLine();
+
         out.print(Constants.WRITE_AUTHOR);
-        parameter = scanner.nextLine();
-        book.setAuthor(parameter);
+        String author = scanner.nextLine();
+
         out.print(Constants.WRITE_YEAR);
-        parameter = scanner.nextLine();
-        book.setYear(parameter);
-        Serializable bookId;
-        bookId = repository.save(book);
-        return bookId;
+        String year = scanner.nextLine();
+
+        return repository.save(new Book(title, author, year));
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public Book findBook() {
-        out.println("Get by Id. Please enter book id:");
+    public Optional<Book> findBook() {
         out.print(Constants.WRITE_ID);
-
-        Scanner scanner = new Scanner(System.in);
         Long id = scanner.nextLong();
 
-        Optional<Book> bookOptional = repository.findById(id);
-        out.print(bookOptional.get());
-        return bookOptional.get();
+        Optional<Book> book = repository.findById(id);
+        if (book.isEmpty()) {
+            err.println("Book with ID:" + id + " not found. Please enter ID of existing book.");
+        } else {
+            out.println(book.get());
+        }
+        return book;
     }
 
     @Override
     public List<Book> getBooks() {
-        List<Book> list = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         repository.findAll().forEach(book -> {
-            list.add(book);
+            books.add(book);
             out.println(book);
         });
-        return list;
+        return books;
+    }
+
+    @Override
+    public void deleteBook() {
+        findBook().ifPresent(repository::delete);
     }
 
     public void addBooks(File file) {
@@ -101,13 +101,6 @@ public class BookServiceImpl implements BookService {
             .map(book -> Try.of(() -> repository.save(book)))
             .forEach(out::println);
     }
-
-    @Override
-    public void deleteBook() {
-        Book book = findBook();
-        repository.delete(book);
-    }
-
 
     private List<String> parseFileLines(File file) {
         /*

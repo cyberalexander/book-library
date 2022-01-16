@@ -46,7 +46,7 @@ class BookServiceImplTest {
         Book actual = bookService.createBook();
 
         Assertions.assertEquals(TEST_BOOK, actual, String.format("%s is not equal to %s", TEST_BOOK, actual));
-        Mockito.verify(scannerMock, new Times(3)).nextLine();
+        Mockito.verify(scannerMock, new Times(4)).nextLine();
         Mockito.verify(repositoryMock).save(Mockito.any());
     }
 
