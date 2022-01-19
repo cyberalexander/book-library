@@ -1,6 +1,7 @@
 package by.leonovich.booklibrary.aspects;
 
 import by.leonovich.booklibrary.domain.Book;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.time.StopWatch;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -10,8 +11,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
@@ -20,17 +19,16 @@ import java.util.concurrent.TimeUnit;
  * Spring Aspect demo to show the basic abilities of Spring AOP.
  * Created by alexanderleonovich on 12.06.15.
  */
-//TODO modify this aspect to listed JPA repository instead of legacy AbstractDao
-//@Aspect
-//@Component
+@Log4j2
+@Aspect
+@Component
 public class WorkAspect {
-    private static final Logger log = LoggerFactory.getLogger(WorkAspect.class);
 
-    @Pointcut("execution(* by.leonovich.booklibrary.services.BookService.createBook(by.leonovich.booklibrary.domain.Book))")
+    @Pointcut("execution(* by.leonovich.booklibrary.service.BookService.createBook())")
     public void performance() {
     }
 
-    @Pointcut("execution(* by.leonovich.booklibrary.repository.AbstractDao.save(*)) && args(book)")
+    @Pointcut("execution(* by.leonovich.booklibrary.repository.BookRepository.save(*)) && args(book)")
     public void intercept(Book book) {
     }
 
