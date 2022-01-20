@@ -14,17 +14,20 @@ import static javax.persistence.GenerationType.IDENTITY;
  * Created by alexanderleonovich on 11.06.15.
  */
 @Entity
-@Table(name = "T_BOOK")
-public class Book implements Serializable{
+@Table(name = "t_book")
+public class Book implements Serializable {
     @Serial
     private static final long serialVersionUID = 2302932951774527371L;
 
     @Id
-    @Column(name = "F_BOOK_ID", nullable = false, unique = true)
+    @Column(name = "f_book_id", nullable = false, unique = true)
     @GeneratedValue(strategy = IDENTITY)
     private Long bookId;
+    @Column(name = "f_title")
     private String title;
+    @Column(name = "f_author")
     private String author;
+    @Column(name = "f_year")
     private String year;
 
     public Book() {

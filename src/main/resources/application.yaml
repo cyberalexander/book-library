@@ -4,7 +4,13 @@ logging:
 
 spring:
   datasource:
+    username: ******
+    password: ******
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/book_library
-    username: *****
-    password: *****
+  jpa:
+    database: mysql
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
