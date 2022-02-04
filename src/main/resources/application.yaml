@@ -12,5 +12,5 @@ spring:
     database: mysql
     show-sql: true
     generate-ddl: true
-    hibernate:
-      ddl-auto: create
+    #hibernate:
+      #ddl-auto: create
