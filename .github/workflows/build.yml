@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-          os: [ ubuntu-latest, macOS-latest ]
+          os: [ ubuntu-latest ] #, macOS-latest - temporarily excluded while working on seting up the build.
     
 
     steps:
