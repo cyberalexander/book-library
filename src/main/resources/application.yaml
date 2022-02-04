@@ -4,8 +4,8 @@ logging:
 
 spring:
   datasource:
-    username: ******
-    password: ******
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/book_library
   jpa:
