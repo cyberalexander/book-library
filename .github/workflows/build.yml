@@ -38,13 +38,8 @@ jobs:
         
     - name: Adding database username secret
       run: |
-          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_USERNAME }}/" src/main/resources/application.yaml
-      shell: bash
-      
-    - name: Adding database password secret
-      run: |
-          sed -e "s/\${DATABASE_PASSWORD}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
-      shell: bash
+          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_USERNAME }}/" -e "s/\${DATABASE_PASSWORD}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
+      shell: sh
         
     - name: Build with Maven
       run: mvn -B package --file pom.xml #-Dmaven.test.skip=true
