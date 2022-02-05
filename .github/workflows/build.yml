@@ -20,9 +20,9 @@ jobs:
     steps:
     - uses: mirromutth/mysql-action@v1.1
       with:
-        mysql database: 'book_library'
+        mysql database: book_library
         mysql root password: ${{ secrets.DATABASE_PASSWORD }}
-        mysql user: ${{ secrets.DATABASE_USERNAME }}
+        mysql user: root
         mysql password: ${{ secrets.DATABASE_PASSWORD }}
     
     - uses: actions/checkout@v2
