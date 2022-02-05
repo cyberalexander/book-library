@@ -38,12 +38,12 @@ jobs:
         
     - name: Adding secret
       run: |
-          printf ${{secrets.DATABASE_USERNAME}} >> src/main/resources/application.yaml
+          printf ${{ secrets.DATABASE_USERNAME }} >> src/main/resources/application.yaml
       shell: bash
       
     - name: Adding secret
       run: |
-          printf ${{secrets.DATABASE_PASSWORD}} >> src/main/resources/application.yaml
+          printf ${{ secrets.DATABASE_PASSWORD }} >> src/main/resources/application.yaml
       shell: bash
         
     - name: Build with Maven
