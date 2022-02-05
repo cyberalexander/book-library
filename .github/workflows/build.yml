@@ -43,7 +43,7 @@ jobs:
       
     - name: Adding secret
       run: |
-          printf ${{ secrets.DATABASE_PASSWORD }} >> src/main/resources/application.yaml
+          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
       shell: bash
         
     - name: Build with Maven
