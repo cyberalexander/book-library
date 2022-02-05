@@ -19,7 +19,7 @@ jobs:
     
     services:
         mysql:
-          image: mysql:8.0.27
+          image: mysql:8.0
           env:
             ports: 3306
             MYSQL_DATABASE: book_library
@@ -50,4 +50,4 @@ jobs:
       shell: bash
         
     - name: Build with Maven
-      run: mvn -Dmaven.test.skip=true -B package --file pom.xml
+      run: mvn -B package --file pom.xml #-Dmaven.test.skip=true
