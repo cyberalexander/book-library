@@ -16,18 +16,15 @@ jobs:
     strategy:
       matrix:
           os: [ ubuntu-latest ] #, macOS-latest - temporarily excluded while working on seting up the build.
-    
-    services:
-        mysql:
-          image: mysql:8.0
-          env:
-            ports: 3306
-            MYSQL_DATABASE: book_library
-            MYSQL_USER: ${{secrets.DATABASE_USERNAME}}
-            MYSQL_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-            MYSQL_ROOT_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
           
     steps:
+    - uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql database: 'book_library'
+        mysql root password: ${{secrets.DATABASE_PASSWORD}}
+        mysql user: ${{secrets.DATABASE_USERNAME}}
+        mysql password: ${{secrets.DATABASE_PASSWORD}}
+    
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
