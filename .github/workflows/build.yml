@@ -22,7 +22,7 @@ jobs:
       with:
         mysql database: book_library
         mysql root password: ${{ secrets.DATABASE_PASSWORD }}
-        mysql user: 'root'
+        mysql user: ${{ secrets.DATABASE_USERNAME }}
         mysql password: ${{ secrets.DATABASE_PASSWORD }}
     
     - uses: actions/checkout@v2
@@ -36,14 +36,14 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Adding secret
+    - name: Adding database username secret
       run: |
-          printf root >> src/main/resources/application.yaml
+          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_USERNAME }}/" src/main/resources/application.yaml
       shell: bash
       
-    - name: Adding secret
+    - name: Adding database password secret
       run: |
-          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
+          sed -e "s/\${DATABASE_PASSWORD}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
       shell: bash
         
     - name: Build with Maven
