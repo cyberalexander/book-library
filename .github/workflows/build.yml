@@ -17,7 +17,16 @@ jobs:
       matrix:
           os: [ ubuntu-latest ] #, macOS-latest - temporarily excluded while working on seting up the build.
     
-
+    services:
+        mysql:
+          image: 8.0.27
+          env:
+            ports: 3306
+            MYSQL_DATABASE: book_library
+            MYSQL_USER: ${{secrets.DATABASE_USERNAME}}
+            MYSQL_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+            MYSQL_ROOT_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          
     steps:
     - uses: actions/checkout@v2
       with:
