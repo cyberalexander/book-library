@@ -18,17 +18,19 @@ jobs:
           os: [ ubuntu-latest ] #, macOS-latest - temporarily excluded while working on seting up the build.
           
     steps:
-    - uses: mirromutth/mysql-action@v1.1
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+        
+    - name: setup mysql database
+      uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: 'book_library'
         mysql root password: 'password'
         mysql user: 'user'
         mysql password: 'password'
     
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-        
     - name: Set up JDK 17
       uses: actions/setup-java@v2
       with:
