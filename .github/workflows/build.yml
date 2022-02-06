@@ -15,10 +15,16 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-          os: [ ubuntu-latest, macOS-latest ]
-    
-
+          os: [ ubuntu-latest ] #, macOS-latest - temporarily excluded while working on seting up the build.
+          
     steps:
+    - uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql database: book_library
+        mysql root password: ${{ secrets.DATABASE_PASSWORD }}
+        mysql user: ${{ secrets.DATABASE_USERNAME }}
+        mysql password: ${{ secrets.DATABASE_PASSWORD }}
+    
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
@@ -30,15 +36,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Adding secret
+    - name: Adding database username secret
       run: |
-          printf ${{secrets.DATABASE_USERNAME}} >> src/main/resources/application.yaml
-      shell: bash
-      
-    - name: Adding secret
-      run: |
-          printf ${{secrets.DATABASE_PASSWORD}} >> src/main/resources/application.yaml
-      shell: bash
+          sed -e "s/\${DATABASE_USERNAME}/\${{ secrets.DATABASE_USERNAME }}/" -e "s/\${DATABASE_PASSWORD}/\${{ secrets.DATABASE_PASSWORD }}/" src/main/resources/application.yaml
+      shell: sh
         
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml #-Dmaven.test.skip=true
