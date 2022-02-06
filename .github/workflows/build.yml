@@ -23,7 +23,7 @@ jobs:
       with:
         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
         
-    - name: setup MySQL database
+    - name: setup MySQL database #https://github.com/marketplace/actions/setup-mysql
       uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: 'book_library'
