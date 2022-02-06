@@ -27,9 +27,8 @@ jobs:
       uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: 'book_library'
-        mysql root password: 'root'
-        mysql user: 'root'
-        mysql password: 'root'
+        mysql root password: root
+        mysql user: root
     
     - name: Set up JDK 17
       uses: actions/setup-java@v2
