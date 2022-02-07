@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+It's just a spring.cfg.xml configuration left as an example, after application reworked to Spring Boot app.
+Currently this configuration is not used in application.
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -19,17 +23,17 @@
     <!--Translate exceptions to Spring-exceptions -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="sqlDataSource" class="com.mysql.cj.jdbc.Driver">
         <property name="url" value="jdbc:mysql://localhost:3306/book_library"/>
-        <property name="username" value="*****"/>
-        <property name="password" value="*****"/>
+        <property name="username" value="root"/>
+        <property name="password" value="mysqlalex21!"/>
         <property name="initialSize" value="100"/>
         <property name="maxActive" value="100"/>
     </bean>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="sqlDataSource"/>
         <property name="packagesToScan">
             <list>
                 <value>by.leonovich.booklibrary.domain</value>
