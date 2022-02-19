@@ -22,8 +22,11 @@
  */
 package by.leonovich.booklibrary;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Created : 07/01/2022 10:42
@@ -34,10 +37,34 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @version 1.0
  */
 @SpringBootTest
+@ActiveProfiles("test")
 class BookLibraryApplicationTests {
+
+    @Value("${application.some.parameter}")
+    private String someParameter;
+
+    @Value("${application.some.other.parameter}")
+    private String someOtherParameter;
 
     @Test
     void contextLoads() {
         //Default unit test verifying if Spring Boot Context initialization successful
+    }
+
+    /**
+     * Parameter overridden in {@see application-test.yaml} and
+     * the value expected to be assigned from {@see application-test.yaml}
+     */
+    @Test
+    void testParameterValueTakenFromTestProperties() {
+        Assertions.assertEquals("some test value", someParameter);
+    }
+
+    /**
+     * Parameter exists only in default application.yaml and the value expected to be taken from there.
+     */
+    @Test
+    void testParameterValueTakenFromDefaultProperties() {
+        Assertions.assertEquals("another real value", someOtherParameter);
     }
 }

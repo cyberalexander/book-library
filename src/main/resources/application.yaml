@@ -14,3 +14,8 @@ spring:
     generate-ddl: true
     #hibernate:
       #ddl-auto: create
+application:
+  some:
+    parameter: "some real value"
+    other:
+      parameter: "another real value"
