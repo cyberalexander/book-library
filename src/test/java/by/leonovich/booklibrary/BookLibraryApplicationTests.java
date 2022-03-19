@@ -40,10 +40,10 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 class BookLibraryApplicationTests {
 
-    @Value("${application.some.parameter}")
+    @Value("${book-library.some.parameter}")
     private String someParameter;
 
-    @Value("${application.some.other.parameter}")
+    @Value("${book-library.some.other.parameter}")
     private String someOtherParameter;
 
     @Test

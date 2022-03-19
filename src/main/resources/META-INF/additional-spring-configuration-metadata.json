@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "book-library.some.parameter",
+      "type": "java.lang.String",
+      "description": "Just an example of custom parameter."
+    },
+    {
+      "name": "book-library.some.other.parameter",
+      "type": "java.lang.String",
+      "description": "Just an example of other custom parameter."
+    },
+    {
+      "name": "book-library.discounts",
+      "type": "java.util.Map<java.lang.String, java.lang.Integer>",
+      "description": "A map of discount codes to a discount percentage."
+    }
+  ]
+}

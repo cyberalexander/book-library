@@ -14,8 +14,13 @@ spring:
     generate-ddl: true
     #hibernate:
       #ddl-auto: create
-application:
+book-library:
   some:
     parameter: "some real value"
     other:
       parameter: "another real value"
+  discounts:
+    discount-example-1: 10
+    discount-example-2: 15
+    discount-example-3: 20
+
