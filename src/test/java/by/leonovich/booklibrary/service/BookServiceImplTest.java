@@ -49,7 +49,7 @@ import java.util.Optional;
 @Log4j2
 @ExtendWith(MockitoExtension.class)
 class BookServiceImplTest {
-    private static final Book TEST_BOOK = new Book("test_title", "test_author", "2022");
+    private static final Book TEST_BOOK = Book.builder().title("test_title").author("test_author").year("2022").build();
 
     @InjectMocks
     private BookServiceImpl bookService;

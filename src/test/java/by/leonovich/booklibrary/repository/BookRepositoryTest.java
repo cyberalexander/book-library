@@ -50,7 +50,7 @@ class BookRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        book = new Book("test_title", "test_author", "2022");
+        book = Book.builder().title("test_title").author("test_author").year("2022").build();
     }
 
     @Test

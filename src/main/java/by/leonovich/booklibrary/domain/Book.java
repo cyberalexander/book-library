@@ -22,6 +22,11 @@
  */
 package by.leonovich.booklibrary.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +40,10 @@ import static javax.persistence.GenerationType.IDENTITY;
 /**
  * Created by alexanderleonovich on 11.06.15.
  */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "t_book")
 public class Book implements Serializable {
@@ -51,47 +60,6 @@ public class Book implements Serializable {
     private String author;
     @Column(name = "f_year")
     private String year;
-
-    public Book() {
-    }
-
-    public Book(String title, String author, String year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-    }
-
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     @Override
     public int hashCode() {

@@ -77,7 +77,7 @@ public class BookServiceImpl implements BookService {
         out.print(Constants.WRITE_YEAR);
         String year = scanner.nextLine();
 
-        return repository.save(new Book(title, author, year));
+        return repository.save(Book.builder().title(title).author(author).year(year).build());
     }
 
     @Override
