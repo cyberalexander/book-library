@@ -62,8 +62,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <license>MIT License</license>
-        <license.url>https://github.com/cyberalexander/book-library/blob/master/LICENSE</license.url>
-        <main>com.leonovich.booklibrary.BookLibraryApplication</main>
+        <license.url>https://raw.githubusercontent.com/cyberalexander/book-library/master/LICENSE</license.url>
+        <main>by.leonovich.booklibrary.BookLibraryApplication</main>
 
         <!-- ============== Dependencies versions ============== -->
 
