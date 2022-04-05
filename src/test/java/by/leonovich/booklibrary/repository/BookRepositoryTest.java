@@ -77,6 +77,7 @@ class BookRepositoryTest {
 
     @Test
     void testGetAll() {
+        repository.save(book);
         Iterable<Book> allBooks = repository.findAll();
         Assertions.assertTrue(allBooks.iterator().hasNext(), "The books does not exists in database.");
     }
