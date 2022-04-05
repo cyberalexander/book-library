@@ -1,3 +1,7 @@
+logging:
+  level:
+    root: debug
+
 book-library:
   some:
     parameter: "some test value"
