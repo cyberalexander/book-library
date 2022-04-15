@@ -31,3 +31,6 @@ $ mvn -U clean install
 ```bash
 $ mvn spring-boot:run
 ```
+
+### Menu:
+![img.png](static/menu_v.2022.01.04-SNAPSHOT.png)
