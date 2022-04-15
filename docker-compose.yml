@@ -1,0 +1,26 @@
+# https://docs.docker.com/compose/compose-file/
+version: "3.8"
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+      #- ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlalex21!
+      MYSQL_DATABASE: book_library
+    ports:
+      - "3307:3307"
+    restart: always
+  book-library:
+    image: cyberalexander/book-library:latest
+    container_name: book-library
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: "no"
+    #network_mode: host
+    links:
+      - mysql
+
+# TODO configure database integration
