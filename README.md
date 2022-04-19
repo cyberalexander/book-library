@@ -15,7 +15,7 @@ System name: **book-library**
 * Run [create_schema.sql](.schema/create_schema.sql)
 #### Step 2 - Checkout the project
 #### Step 3 - Adjust application configuration
-* Adjust [](src/main/resources/application.yaml) configuration for your environment
+* Adjust [application.yaml](src/main/resources/application.yaml) configuration for your environment
 ```yaml
 spring:
   datasource:
