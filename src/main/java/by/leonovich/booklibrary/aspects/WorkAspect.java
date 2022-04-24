@@ -82,7 +82,9 @@ public class WorkAspect {
             stopWatch.start();
             joinPoint.proceed();
             stopWatch.stop();
-            log.info("Aspect AROUND : END {}", stopWatch.getTime(TimeUnit.MILLISECONDS));
+            if (log.isInfoEnabled()) {
+                log.info("Aspect AROUND : END {}", stopWatch.getTime(TimeUnit.MILLISECONDS));
+            }
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }

@@ -61,7 +61,9 @@ public class ConsoleScanner {
     }
 
     public void close() {
-        log.warn("{} closed!", this.scanner.getClass());
+        if (log.isWarnEnabled()) {
+            log.warn("{} closed!", this.scanner.getClass());
+        }
         this.scanner.close();
     }
 }

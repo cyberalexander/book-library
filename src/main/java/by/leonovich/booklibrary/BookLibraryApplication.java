@@ -39,7 +39,9 @@ public class BookLibraryApplication {
 
     public static void main(final String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BookLibraryApplication.class, args);
-        log.info("Context initialized : {}", context.getEnvironment());
+        if (log.isInfoEnabled()) {
+            log.info("Context initialized : {}", context.getEnvironment());
+        }
         menu(context);
     }
 
