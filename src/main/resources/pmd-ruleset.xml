@@ -32,7 +32,6 @@
     <!-- A rule set, that comes bundled with PMD -->
     <rule ref="category/java/bestpractices.xml">
         <exclude name="JUnitTestsShouldIncludeAssert"/>
-        <exclude name="UseTryWithResources"/>
     </rule>
     <rule ref="rulesets/java/maven-pmd-plugin-default.xml"/>
 </ruleset>
